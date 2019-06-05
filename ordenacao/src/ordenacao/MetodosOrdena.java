@@ -58,7 +58,104 @@ public class MetodosOrdena {
                 }
             }
         }
-    }
+    }   
+    void merge(int vetor[], int inicio, int meio, int fim) {
+            int prim = inicio;
+            int seg = meio + 1;
+            int aux[] = new int[fim + 1];
+            int i = inicio;
+            // enquanto tiver elementos nos dois conjuntos
+            while ((prim <= meio) && (seg <= fim)) {
+            // insere elemento do primeiro
+                if (vetor[prim] <= vetor[seg]) {
+                    aux[i] = vetor[prim];
+                    prim++;
+                } else { // insere elemento do segundo
+                    aux[i] = vetor[seg];
+                    seg++;
+                }
+            i++;
+            // sobrou elementos do segundo
+                if (prim > meio) {
+                    while (seg <= fim) {
+                        aux[i] = vetor[seg];
+                        seg++;
+                        i++;
+                    }
+                    // sobrou elementos do primeiro
+                    } else {
+                    while (prim <= meio) {
+                        aux[i] = vetor[prim];
+                        prim++;
+                        i++;
+                }
+                     // copia o vetor auxiliar no vetor principal
+                for (i  = inicio; i <= fim; i++) {
+                    vetor[i] = aux[i];
+                }
+            }
+            }
+        }        
+    void troca(int a, int b){
+            int temp;
+            temp = a;
+            a = b;
+            b = temp;
+        }       
+    int particiona( int A[ ], int esquerda, int direita )
+        {
+            int i, temp;
+            int ptr = esquerda;
+            int pivo = A[esquerda]; /* pivô é primeiro elemento */
+            /* Separa o vetor em elementos pequenos e grandes – em relação ao
+            pivô */
+            for (i = esquerda+1; i<=direita; i++)
+                if( A[i] <= pivo ){
+                    ptr = ptr + 1;
+                    troca ( (A[i]), (A[ptr]) );
+            }
+            /* coloca o pivo entre os elementos pequenos e grandes */
+            troca((A[esquerda]), (A[ptr]));
+            return ptr;
+        }
+    void quickSort( int A[ ], int esquerda, int direita )
+        {
+            int pivo = particiona (A, esquerda, direita);
+            if ( pivo > esquerda)
+                quickSort( A, esquerda, pivo - 1 );
+            if ( pivo < direita)
+                quickSort( A, pivo + 1, direita );
+        }        
+    void heapsort( int a[], int n){
+            int i = n/2, pai, filho, t;
+            for (;;) {
+                if (i > 0) {
+                    i--;
+                    t = a[i];
+                }else{
+                    n--;
+                    if (n == 0)
+                        return;
+                    t = a[n];
+                    a[n] = a[0];
+                }
+                pai = i;
+                filho = i*2 + 1;
+                /* continua */
+                while (filho < n) {
+                    if ((filho + 1 < n) && (a[filho + 1] > a[filho]))
+                        filho++;
+                    if (a[filho] > t) {
+                        a[pai] = a[filho];
+                        pai = filho;
+                        filho = pai*2 + 1;
+                    } else
+                    break;
+                }
+                a[pai] = t;
+            }/* fim for*/
+            }
+                            
 }
 /*
 Ordenação
