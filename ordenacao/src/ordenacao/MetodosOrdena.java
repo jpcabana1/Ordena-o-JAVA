@@ -8,16 +8,7 @@ public class MetodosOrdena {
         }
         System.out.println("");
     } 
-    void insertionSort(int vet[], int n ){
-        int j, p, tmp;
-        for(p = 1; p < n; p++){
-            tmp = vet[p];       
-            for(j = p; j > 0 && tmp < vet[ j - 1 ]; j--){
-                vet[ j ] = vet[ j - 1 ];
-                vet[ j ] = tmp;
-            }
-        }
-    }
+    
     void selectionSort(int vet[], int n ){
         int i, j, min, tmp;
         for(i = 0; i < n - 1; i++){
@@ -42,6 +33,18 @@ public class MetodosOrdena {
         }
       }
     }
+    
+    void insertionSort(int vet[], int n ){
+        int j, p, tmp;
+        for(p = 1; p < n; p++){
+            tmp = vet[p];       
+            for(j = p; j > 0 && tmp < vet[ j - 1 ]; j--){
+                vet[ j ] = vet[ j - 1 ];
+                vet[ j ] = tmp;
+            }
+        }
+    }
+    
     void shellSort(int data[], int n, int inc[], int num){
     int j, hCnt, h, k, tmp;
     for (num--; num >= 0; num--){
